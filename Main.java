@@ -1,10 +1,9 @@
-import java.awt.*;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.*;
 import javax.swing.SwingConstants;
 import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JPanel;
+import net.miginfocom.swing.MigLayout;
 
 class Main {
   public static void main(String[] args) {
@@ -13,20 +12,40 @@ class Main {
     frame.setLocation(5, 5);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    // Create a JPanel for UI layout
-    JPanel panel = new JPanel(new BorderLayout());
+    // Create a Mig Layout Panel for our layout
+    JPanel panel = new JPanel(new MigLayout());
 
     // Create UI components
-    JLabel titleLabel = new JLabel("BMI Calculator", SwingConstants.CENTER);
+    JLabel titleLabel, ageLabel, heightLabel, feetLabel,
+           inchLabel, weightLabel, resultsLabel;
+    JTextField ageField, heightFeetField, heightInchField, weightField;
+    JButton button;
+    
+    titleLabel = new JLabel("BMI Calculator", SwingConstants.CENTER);
     titleLabel.setFont(new Font("Verdana", Font.PLAIN, 18));
     titleLabel.setBounds(10, 10, 280, 20);
 
-    JLabel ageLabel = new JLabel("Age:");
-    ageLabel.setBounds(10, 10, 40, 20);
+    ageLabel = new JLabel("Age: ");
+    ageField = new JTextField(2);
 
-    // Add UI components to the frame
-    panel.add(titleLabel, BorderLayout.NORTH);
-    panel.add(ageLabel, BorderLayout.LINE_END);
+    heightLabel = new JLabel("Height: ");
+    feetLabel = new JLabel("\'");
+    inchLabel = new JLabel("\"");
+    heightFeetField = new JTextField(2);
+    heightInchField = new JTextField(2);
+
+    // Add UI components to the panel
+    panel.add(titleLabel, "span");
+    panel.add(ageLabel);
+    panel.add(ageField, "wrap");
+    panel.add(heightLabel);
+    panel.add(heightFeetField);
+    panel.add(feetLabel);
+    panel.add(heightInchField);
+    panel.add(inchLabel, "wrap");
+    
+    // Add panel
+    
     frame.add(panel);
 
     frame.show();
